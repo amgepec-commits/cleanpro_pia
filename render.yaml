@@ -1,0 +1,18 @@
+# Blueprint de Render (New + > Blueprint). Ajustar nombres si se desea.
+services:
+  - type: web
+    name: cleanpro-api
+    runtime: docker
+    plan: free
+    healthCheckPath: /docs
+    envVars:
+      - key: APP_ENV
+        value: production
+      - key: DATABASE_URL
+        fromDatabase:
+          name: cleanpro-db
+          property: connectionString
+
+databases:
+  - name: cleanpro-db
+    plan: free
